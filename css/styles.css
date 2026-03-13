@@ -1,18 +1,18 @@
 /* ===================================
    Dr. Sneha's Care & Cure Dental Clinic
    Premium Dental Website Stylesheet
-   Color Palette: Lavender / Purple / White
+   Color Palette: Lavender / White
    =================================== */
 
 /* --- CSS Variables --- */
 :root {
-    --primary: #7C3AED;
-    --primary-dark: #6D28D9;
-    --primary-light: #A78BFA;
-    --primary-lighter: #DDD6FE;
-    --primary-lightest: #EDE9FE;
-    --lavender: #E8DEF8;
-    --lavender-light: #F3EEFA;
+    --primary: #9B8EC4;
+    --primary-dark: #7E6FAF;
+    --primary-light: #B8AED6;
+    --primary-lighter: #D5CEE8;
+    --primary-lightest: #EDE8F5;
+    --lavender: #D5CEE8;
+    --lavender-light: #F0ECF7;
     --white: #FFFFFF;
     --off-white: #FAFAFE;
     --gray-50: #F9FAFB;
