@@ -174,15 +174,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .logo-icon {
-    width: 44px;
-    height: 44px;
-    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    width: 60px;
+    height: 60px;
     border-radius: var(--radius);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--white);
-    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.logo-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .logo-name {
@@ -952,6 +956,57 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.8rem;
 }
 
+/* --- Google Review CTA --- */
+.google-review-cta {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.btn-google-review {
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--white);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    padding: 12px 28px;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+}
+
+.btn-google-review:hover {
+    background: var(--white);
+    color: var(--primary-dark);
+    border-color: var(--white);
+    transform: translateY(-2px);
+}
+
+.btn-google-reviews-see {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    padding: 12px 28px;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+}
+
+.btn-google-reviews-see:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
 /* --- CTA Section --- */
 .cta-section {
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
@@ -1539,6 +1594,11 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: var(--shadow-md);
 }
 
+.map-fallback {
+    text-align: center;
+    margin-top: 16px;
+}
+
 /* --- Footer --- */
 .footer {
     background: var(--gray-900);
@@ -1562,7 +1622,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .footer-logo .logo-icon {
-    background: var(--primary);
+    background: transparent;
 }
 
 .footer-logo .logo-name {
@@ -1815,8 +1875,8 @@ h1, h2, h3, h4, h5, h6 {
 
     /* Logo */
     .logo-icon {
-        width: 36px;
-        height: 36px;
+        width: 48px;
+        height: 48px;
         font-size: 1rem;
         border-radius: 8px;
     }
