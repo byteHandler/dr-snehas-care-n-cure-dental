@@ -53,6 +53,12 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 100px;
+    -webkit-text-size-adjust: 100%;
+}
+
+/* Tap highlight for mobile */
+a, button {
+    -webkit-tap-highlight-color: rgba(124, 58, 237, 0.15);
 }
 
 body {
@@ -548,24 +554,19 @@ h1, h2, h3, h4, h5, h6 {
 .doctor-image-wrapper {
     border-radius: var(--radius-xl);
     overflow: hidden;
-    min-height: 450px;
-    position: relative;
     box-shadow: var(--shadow-lg);
-}
-
-.doctor-image-wrapper.doctor-portrait {
-    min-height: 480px;
 }
 
 .doctor-photo {
     width: 100%;
-    height: 100%;
+    height: 450px;
     object-fit: cover;
     object-position: top center;
-    position: absolute;
-    top: 0;
-    left: 0;
     display: block;
+}
+
+.doctor-image-wrapper.doctor-portrait .doctor-photo {
+    height: 480px;
 }
 
 .experience-badge {
@@ -1718,6 +1719,7 @@ h1, h2, h3, h4, h5, h6 {
    RESPONSIVE DESIGN
    =================================== */
 
+/* --- Tablet (1024px) --- */
 @media (max-width: 1024px) {
     .hero-content {
         grid-template-columns: 1fr;
@@ -1779,15 +1781,17 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+/* --- Mobile (768px) --- */
 @media (max-width: 768px) {
-    .logo-name {
-        white-space: normal;
-        font-size: 0.92rem;
+    /* Top bar - compact for mobile */
+    .top-bar {
+        padding: 6px 0;
+        font-size: 0.72rem;
     }
 
     .top-bar-content {
         flex-direction: column;
-        gap: 4px;
+        gap: 2px;
         text-align: center;
     }
 
@@ -1800,6 +1804,26 @@ h1, h2, h3, h4, h5, h6 {
         gap: 2px;
     }
 
+    .top-bar-right {
+        display: none;
+    }
+
+    /* Logo */
+    .logo-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+        border-radius: 8px;
+    }
+
+    .logo-name {
+        white-space: normal;
+        font-size: 0.82rem;
+        line-height: 1.25;
+        max-width: 200px;
+    }
+
+    /* Mobile nav */
     .nav-links {
         display: none;
         position: absolute;
@@ -1808,9 +1832,12 @@ h1, h2, h3, h4, h5, h6 {
         right: 0;
         background: var(--white);
         flex-direction: column;
-        padding: 20px;
+        padding: 16px;
         box-shadow: var(--shadow-lg);
-        gap: 4px;
+        gap: 2px;
+        border-top: 1px solid var(--gray-200);
+        max-height: 80vh;
+        overflow-y: auto;
     }
 
     .nav-links.active {
@@ -1818,113 +1845,587 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .nav-links a {
-        padding: 12px 16px;
+        padding: 14px 16px;
         width: 100%;
+        font-size: 0.95rem;
+        border-radius: var(--radius-sm);
+    }
+
+    .nav-links li:last-child {
+        margin-top: 8px;
+    }
+
+    .btn-nav {
+        text-align: center !important;
     }
 
     .hamburger {
         display: flex;
     }
 
+    /* Hero - compact mobile */
     .hero {
         min-height: auto;
     }
 
     .hero-content {
-        padding: 50px 24px;
+        padding: 40px 20px;
     }
 
     .hero h1 {
-        font-size: 2rem;
+        font-size: 1.85rem;
+        margin-bottom: 14px;
+    }
+
+    .hero-subtitle {
+        font-size: 0.85rem;
+        margin-bottom: 10px;
     }
 
     .hero-description {
-        font-size: 1rem;
+        font-size: 0.92rem;
+        margin-bottom: 24px;
+        line-height: 1.7;
     }
 
     .hero-cta {
         flex-direction: column;
+        gap: 12px;
+        margin-bottom: 28px;
+    }
+
+    .hero-cta .btn {
+        width: 100%;
+        justify-content: center;
     }
 
     .hero-badges {
         flex-direction: column;
-        gap: 12px;
+        gap: 10px;
     }
 
+    .badge {
+        font-size: 0.8rem;
+    }
+
+    /* Sections - tighter spacing */
     .section {
-        padding: 56px 0;
+        padding: 48px 0;
+    }
+
+    .section-header {
+        margin-bottom: 32px;
     }
 
     .section-header h2 {
-        font-size: 1.7rem;
+        font-size: 1.55rem;
     }
 
+    .section-label {
+        font-size: 0.78rem;
+        letter-spacing: 1.5px;
+        margin-bottom: 8px;
+    }
+
+    .section-description {
+        font-size: 0.92rem;
+    }
+
+    /* Cards - single column, reduced padding */
     .services-grid,
     .why-us-grid,
     .testimonials-grid,
     .clinic-features-grid,
     .values-grid {
         grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .service-card {
+        padding: 24px 20px;
+    }
+
+    .service-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 1.1rem;
+        margin-bottom: 14px;
+    }
+
+    .service-card h3 {
+        font-size: 1.1rem;
+    }
+
+    .service-card p {
+        font-size: 0.88rem;
+    }
+
+    .why-us-card {
+        padding: 24px 20px;
+    }
+
+    .why-us-icon {
+        width: 52px;
+        height: 52px;
+        font-size: 1.2rem;
+        margin-bottom: 14px;
+    }
+
+    .testimonial-card {
+        padding: 24px 20px;
+    }
+
+    .testimonial-text {
+        font-size: 0.9rem;
+        line-height: 1.7;
+    }
+
+    /* Gallery carousel */
+    .gallery-section .section-header {
+        margin-bottom: 24px;
     }
 
     .gallery-slide img {
-        height: 280px;
+        height: 240px;
     }
 
     .gallery-btn {
-        width: 38px;
-        height: 38px;
+        width: 36px;
+        height: 36px;
+        font-size: 0.8rem;
+    }
+
+    .gallery-btn-prev { left: 8px; }
+    .gallery-btn-next { right: 8px; }
+
+    .gallery-caption {
+        font-size: 0.88rem;
+        padding: 14px 16px;
+    }
+
+    .gallery-dot {
+        width: 8px;
+        height: 8px;
+    }
+
+    /* About preview */
+    .about-preview-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .about-preview-content .credentials {
         font-size: 0.85rem;
     }
 
-    .gallery-btn-prev { left: 10px; }
-    .gallery-btn-next { right: 10px; }
-
-    .gallery-caption {
-        font-size: 0.95rem;
-        padding: 16px 20px;
+    .bio {
+        font-size: 0.92rem;
     }
 
+    .membership-tags {
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+
+    .tag {
+        font-size: 0.78rem;
+        padding: 6px 12px;
+    }
+
+    /* Doctor image */
+    .image-placeholder {
+        min-height: 300px;
+    }
+
+    .doctor-photo {
+        height: 320px;
+    }
+
+    .doctor-image-wrapper.doctor-portrait .doctor-photo {
+        height: 360px;
+    }
+
+    .experience-badge {
+        bottom: -12px;
+        right: -8px;
+        padding: 14px 18px;
+    }
+
+    .exp-number {
+        font-size: 2rem;
+    }
+
+    /* Patients grid */
     .patients-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
     }
 
+    .patient-type {
+        padding: 20px 16px;
+    }
+
+    .patient-type i {
+        font-size: 1.6rem;
+        margin-bottom: 8px;
+    }
+
+    .patient-type h4 {
+        font-size: 0.95rem;
+    }
+
+    .patient-type p {
+        font-size: 0.78rem;
+    }
+
+    /* Credentials on about page */
     .credential-list {
         grid-template-columns: 1fr;
+        gap: 10px;
     }
 
+    .credential {
+        padding: 10px 14px;
+    }
+
+    .bio-text {
+        font-size: 0.92rem;
+    }
+
+    /* Values */
+    .value-card {
+        padding: 24px 20px;
+    }
+
+    .value-number {
+        font-size: 2rem;
+    }
+
+    /* Service detail page */
+    .service-detail-block {
+        padding: 40px 0;
+    }
+
+    .service-detail-icon {
+        width: 52px;
+        height: 52px;
+        font-size: 1.3rem;
+        margin-bottom: 16px;
+    }
+
+    .service-detail-content h2 {
+        font-size: 1.45rem;
+    }
+
+    .service-intro {
+        font-size: 0.92rem;
+        margin-bottom: 24px;
+    }
+
+    .service-item h4 {
+        font-size: 0.98rem;
+    }
+
+    .service-item p {
+        font-size: 0.85rem;
+    }
+
+    /* Contact page */
+    .contact-info h2 {
+        font-size: 1.5rem;
+    }
+
+    .contact-card {
+        padding: 14px 16px;
+        gap: 12px;
+    }
+
+    .contact-card-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 1rem;
+    }
+
+    .contact-card a {
+        font-size: 0.95rem;
+    }
+
+    .contact-card p {
+        font-size: 0.85rem;
+    }
+
+    .working-hours-card {
+        padding: 20px;
+    }
+
+    .hours-table td {
+        font-size: 0.82rem;
+        padding: 6px 0;
+    }
+
+    /* Form */
     .form-row {
         grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .appointment-form-wrapper {
+        padding: 24px 20px;
+        border-radius: var(--radius-lg);
+    }
+
+    .appointment-form-wrapper h2 {
+        font-size: 1.35rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 14px 16px;
+        font-size: 16px; /* prevents iOS zoom on focus */
+        min-height: 48px;
+    }
+
+    .form-group label {
+        font-size: 0.85rem;
+    }
+
+    /* Page headers */
+    .page-header {
+        padding: 40px 0 35px;
+    }
+
+    .page-header h1 {
+        font-size: 1.75rem;
+    }
+
+    .page-header p {
+        font-size: 0.9rem;
+    }
+
+    /* CTA */
+    .cta-section {
+        padding: 44px 0;
+    }
+
+    .cta-content h2 {
+        font-size: 1.35rem;
+    }
+
+    .cta-content p {
+        font-size: 0.92rem;
+        margin-bottom: 20px;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .cta-buttons .btn {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+    }
+
+    /* Footer */
+    .footer {
+        padding: 48px 0 0;
     }
 
     .footer-grid {
         grid-template-columns: 1fr;
-        gap: 32px;
+        gap: 28px;
+    }
+
+    .footer-col p {
+        font-size: 0.85rem;
+    }
+
+    .footer-col h4 {
+        font-size: 1rem;
+        margin-bottom: 14px;
+    }
+
+    .footer-col ul li {
+        margin-bottom: 8px;
+    }
+
+    .contact-list li {
+        font-size: 0.82rem;
+    }
+
+    .footer-bottom {
+        padding: 16px 0;
+        font-size: 0.75rem;
+    }
+
+    /* Map */
+    .map-section {
+        padding: 40px 0 0;
+    }
+
+    .map-title {
+        font-size: 1.25rem;
+    }
+
+    .map-wrapper iframe {
+        height: 280px;
+    }
+
+    /* Floating buttons - mobile safe zone */
+    .whatsapp-float {
+        bottom: 20px;
+        right: 16px;
+        width: 54px;
+        height: 54px;
+        font-size: 1.6rem;
+    }
+
+    .back-to-top {
+        bottom: 84px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        font-size: 0.8rem;
+    }
+
+    /* Feature images (about page) */
+    .feature-image {
+        height: 200px;
+    }
+
+    .section-cta {
+        margin-top: 32px;
+    }
+}
+
+/* --- Small phones (480px) --- */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 16px;
+    }
+
+    .hero h1 {
+        font-size: 1.55rem;
+    }
+
+    .hero-content {
+        padding: 32px 16px;
+    }
+
+    .hero-description {
+        font-size: 0.88rem;
+    }
+
+    .section {
+        padding: 40px 0;
+    }
+
+    .section-header {
+        margin-bottom: 24px;
+    }
+
+    .section-header h2 {
+        font-size: 1.35rem;
+    }
+
+    .section-description {
+        font-size: 0.85rem;
+    }
+
+    .patients-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .patient-type {
+        padding: 16px 12px;
+    }
+
+    .btn {
+        font-size: 0.88rem;
+        padding: 12px 20px;
+    }
+
+    .btn-lg {
+        padding: 13px 24px;
+        font-size: 0.92rem;
+    }
+
+    .experience-badge {
+        bottom: -8px;
+        right: -4px;
+        padding: 12px 14px;
+    }
+
+    .exp-number {
+        font-size: 1.75rem;
+    }
+
+    .exp-text {
+        font-size: 0.7rem;
+    }
+
+    .logo-name {
+        font-size: 0.75rem;
+        max-width: 170px;
     }
 
     .page-header h1 {
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
-    .image-placeholder {
-        min-height: 320px;
+    .gallery-slide img {
+        height: 200px;
     }
 
-    .doctor-portrait,
-    .doctor-image-wrapper.doctor-portrait {
-        min-height: 380px;
+    .gallery-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 0.7rem;
     }
 
-    .doctor-image-wrapper {
-        min-height: 350px;
+    .gallery-caption {
+        font-size: 0.82rem;
+        padding: 10px 14px;
     }
 
-    .appointment-form-wrapper {
-        padding: 24px;
+    .gallery-dots {
+        bottom: 10px;
+    }
+
+    .gallery-dot {
+        width: 7px;
+        height: 7px;
+    }
+
+    .about-preview-content h2 {
+        font-size: 1.3rem;
     }
 
     .cta-content h2 {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
+    }
+
+    .doctor-photo {
+        height: 280px;
+    }
+
+    .doctor-image-wrapper.doctor-portrait .doctor-photo {
+        height: 300px;
+    }
+
+    .contact-card h4 {
+        font-size: 0.75rem;
+    }
+
+    .hours-table td {
+        font-size: 0.78rem;
+    }
+
+    .hours-table td:first-child {
+        padding-right: 8px;
     }
 }
 
@@ -1940,35 +2441,19 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateY(0);
 }
 
-@media (max-width: 480px) {
-    .container {
-        padding: 0 16px;
+/* Reduce animations for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
     }
 
-    .hero h1 {
-        font-size: 1.7rem;
+    html {
+        scroll-behavior: auto;
     }
 
-    .section-header h2 {
-        font-size: 1.5rem;
-    }
-
-    .patients-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .btn-lg {
-        padding: 12px 24px;
-        font-size: 0.92rem;
-    }
-
-    .experience-badge {
-        bottom: -10px;
-        right: -10px;
-        padding: 14px 18px;
-    }
-
-    .exp-number {
-        font-size: 2rem;
+    .animate-ready {
+        opacity: 1;
+        transform: none;
     }
 }
