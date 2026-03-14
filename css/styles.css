@@ -1602,7 +1602,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* --- Map Section --- */
 .map-section {
-    padding: 60px 0 0;
+    padding: 60px 0 60px;
 }
 
 .map-title {
@@ -2375,7 +2375,7 @@ h1, h2, h3, h4, h5, h6 {
 
     /* Map */
     .map-section {
-        padding: 40px 0 0;
+        padding: 40px 0 40px;
     }
 
     .map-title {
