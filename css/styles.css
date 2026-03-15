@@ -234,9 +234,10 @@ h1, h2, h3, h4, h5, h6 {
 .btn-nav {
     background: var(--primary) !important;
     color: var(--white) !important;
-    padding: 10px 20px !important;
+    padding: 8px 16px !important;
     border-radius: var(--radius) !important;
     font-weight: 600 !important;
+    font-size: 0.92rem !important;
 }
 
 .btn-nav:hover {
@@ -1954,9 +1955,9 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .nav-links a {
-        padding: 14px 16px;
+        padding: 8px 12px;
         width: 100%;
-        font-size: 0.95rem;
+        font-size: 0.88rem;
         border-radius: var(--radius-sm);
     }
 

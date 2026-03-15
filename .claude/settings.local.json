@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "WebSearch"
+      "WebSearch",
+      "Read(//Users/nikhiljadhav/**)",
+      "Bash(npx create-next-app@latest clinic-react --typescript --tailwind --eslint --app --src-dir --no-import-alias --yes)",
+      "Bash(cd:*)",
+      "Bash(mkdir:*)"
     ]
   }
 }
