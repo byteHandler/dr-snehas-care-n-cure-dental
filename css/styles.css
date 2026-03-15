@@ -30,7 +30,7 @@
     --danger: #EF4444;
     --whatsapp: #25D366;
     --font-heading: 'Playfair Display', Georgia, serif;
-    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
     --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
@@ -2569,5 +2569,465 @@ h1, h2, h3, h4, h5, h6 {
     .animate-ready {
         opacity: 1;
         transform: none;
+        filter: none;
     }
+
+    .hero-subtitle,
+    .hero h1,
+    .hero-description,
+    .hero-cta,
+    .hero-badges {
+        animation: none !important;
+        opacity: 1 !important;
+        filter: none !important;
+    }
+
+    .hero-card,
+    .hero::before,
+    .hero::after,
+    .cta-section {
+        animation: none !important;
+    }
+
+    .whatsapp-float::before,
+    .whatsapp-float::after {
+        animation: none !important;
+        display: none;
+    }
+}
+
+/* =====================================================
+   RICH MOTION & VISUAL ENHANCEMENTS
+   ===================================================== */
+
+/* ── KEYFRAME ANIMATIONS ── */
+
+@keyframes orbFloat1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%       { transform: translate(50px, -60px) scale(1.15); }
+    66%       { transform: translate(-30px, 30px) scale(0.92); }
+}
+
+@keyframes orbFloat2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%       { transform: translate(-60px, 40px) scale(1.12); }
+    66%       { transform: translate(35px, -45px) scale(1.2); }
+}
+
+@keyframes cardFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50%       { transform: translateY(-14px) rotate(0.3deg); }
+}
+
+@keyframes heroReveal {
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+        filter: blur(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50%       { background-position: 100% 50%; }
+}
+
+@keyframes ringPulse {
+    0%   { transform: scale(1); opacity: 0.65; }
+    100% { transform: scale(2.5); opacity: 0; }
+}
+
+@keyframes underlineReveal {
+    from { transform: scaleX(0); opacity: 0; }
+    to   { transform: scaleX(1); opacity: 1; }
+}
+
+@keyframes iconPop {
+    0%, 100% { transform: scale(1); }
+    40%       { transform: scale(1.2); }
+    70%       { transform: scale(0.93); }
+}
+
+@keyframes footerShimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+/* ── HERO: ANIMATED BACKGROUND ORBS ── */
+
+.hero::before {
+    animation: orbFloat1 14s ease-in-out infinite;
+}
+
+.hero::after {
+    animation: orbFloat2 18s ease-in-out infinite;
+}
+
+/* ── HERO: STAGGERED TEXT REVEAL ── */
+
+.hero-subtitle {
+    opacity: 0;
+    animation: heroReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.1s;
+}
+
+.hero h1 {
+    opacity: 0;
+    animation: heroReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.28s;
+}
+
+.hero-description {
+    opacity: 0;
+    animation: heroReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.44s;
+}
+
+.hero-cta {
+    opacity: 0;
+    animation: heroReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.58s;
+}
+
+.hero-badges {
+    opacity: 0;
+    animation: heroReveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.72s;
+}
+
+/* ── HERO CARD: FLOATING ── */
+
+.hero-card {
+    animation: cardFloat 5.5s ease-in-out infinite;
+}
+
+/* ── NAVBAR: GLASSMORPHISM ON SCROLL ── */
+
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.82) !important;
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    box-shadow: 0 2px 28px rgba(124, 58, 237, 0.1), 0 1px 4px rgba(0, 0, 0, 0.06) !important;
+    border-bottom: 1px solid rgba(124, 58, 237, 0.1);
+}
+
+/* ── BUTTONS: PRIMARY SHIMMER ── */
+
+.btn-primary {
+    background-image: linear-gradient(
+        90deg,
+        var(--primary-dark) 0%,
+        var(--primary) 30%,
+        var(--primary-light) 60%,
+        var(--primary) 80%,
+        var(--primary-dark) 100%
+    );
+    background-size: 250% auto;
+    transition: background-position 0.65s ease, transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-position: right center;
+    transform: translateY(-3px);
+    box-shadow: 0 14px 36px -4px rgba(124, 58, 237, 0.42);
+    color: var(--white);
+}
+
+/* ── SERVICE CARDS: RICH HOVER & GLOW ── */
+
+.service-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.05) 0%, transparent 65%);
+    opacity: 0;
+    transition: opacity 0.45s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.service-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.service-card:hover {
+    border-color: rgba(124, 58, 237, 0.28);
+    box-shadow: 0 24px 52px -8px rgba(124, 58, 237, 0.2), 0 8px 20px -4px rgba(124, 58, 237, 0.1);
+    transform: translateY(-8px);
+}
+
+.service-card:hover::after {
+    opacity: 1;
+}
+
+.service-icon {
+    transition: background 0.3s ease, color 0.3s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+    background: var(--primary);
+    color: var(--white);
+    transform: scale(1.12);
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.32);
+    animation: iconPop 0.4s ease;
+}
+
+/* ── WHY-US CARDS: SPRING HOVER ── */
+
+.why-us-card {
+    border: 1px solid rgba(0, 0, 0, 0);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.why-us-card:hover {
+    border-color: rgba(124, 58, 237, 0.14);
+    box-shadow: 0 20px 44px -8px rgba(124, 58, 237, 0.16);
+    transform: translateY(-6px);
+}
+
+.why-us-icon {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.why-us-card:hover .why-us-icon {
+    transform: scale(1.12);
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.22);
+}
+
+/* ── TESTIMONIALS: QUOTE DECORATION & HOVER ── */
+
+.testimonial-card {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
+}
+
+.testimonial-card::before {
+    content: '\201C';
+    position: absolute;
+    top: -12px;
+    left: 18px;
+    font-family: var(--font-heading);
+    font-size: 7.5rem;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.09);
+    pointer-events: none;
+    font-style: normal;
+    font-weight: 700;
+    transition: color 0.35s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.16);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.18);
+}
+
+.testimonial-card:hover::before {
+    color: rgba(255, 255, 255, 0.16);
+}
+
+/* ── CTA SECTION: ANIMATED GRADIENT ── */
+
+.cta-section {
+    background: linear-gradient(270deg, #3B0FA3, #5B21B6, #6D28D9, #7C3AED, #9061F9, #7C3AED, #6D28D9);
+    background-size: 400% 400%;
+    animation: gradientShift 10s ease infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-section::before {
+    content: '';
+    position: absolute;
+    top: -60%;
+    left: -15%;
+    width: 520px;
+    height: 520px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 50%;
+    animation: orbFloat1 16s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.cta-section::after {
+    content: '';
+    position: absolute;
+    bottom: -50%;
+    right: -10%;
+    width: 380px;
+    height: 380px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 50%;
+    animation: orbFloat2 20s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.cta-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* ── FOOTER: GRADIENT TOP ACCENT ── */
+
+.footer::before {
+    content: '';
+    display: block;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-dark), var(--primary-light), var(--primary), var(--primary-light), var(--primary-dark));
+    background-size: 200% auto;
+    animation: footerShimmer 6s linear infinite;
+}
+
+/* ── WHATSAPP: DOUBLE PULSE RING ── */
+
+.whatsapp-float::before,
+.whatsapp-float::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    border: 2.5px solid rgba(37, 211, 102, 0.55);
+    animation: ringPulse 2.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.whatsapp-float::after {
+    animation-delay: 1.4s;
+}
+
+/* ── SECTION LABEL: ANIMATED UNDERLINE ── */
+
+.section-label {
+    display: inline-block;
+}
+
+.section-label::after {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 2.5px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    margin: 8px auto 0;
+    border-radius: 2px;
+    transform-origin: center;
+    animation: underlineReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ── SCROLL ANIMATIONS: BLUR + TRANSLATE ── */
+
+.animate-ready {
+    opacity: 0;
+    transform: translateY(36px);
+    filter: blur(4px);
+    transition:
+        opacity 0.72s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.72s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 0.72s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+
+/* ── EXPERIENCE BADGE: SPRING HOVER ── */
+
+.experience-badge {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    cursor: default;
+}
+
+.experience-badge:hover {
+    transform: scale(1.1) rotate(-2deg);
+    box-shadow: 0 18px 44px rgba(124, 58, 237, 0.45);
+}
+
+/* ── DOCTOR PHOTO: ZOOM ON HOVER ── */
+
+.doctor-photo {
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.doctor-image-wrapper:hover .doctor-photo {
+    transform: scale(1.04);
+}
+
+/* ── MEMBERSHIP TAGS: HOVER FILL ── */
+
+.tag {
+    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+}
+
+.tag:hover {
+    background: var(--primary);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(124, 58, 237, 0.28);
+}
+
+/* ── CONTACT CARD: ICON GLOW ── */
+
+.contact-card-icon {
+    transition: background 0.3s ease, color 0.3s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.contact-card:hover .contact-card-icon {
+    background: var(--primary);
+    color: var(--white);
+    transform: scale(1.1);
+}
+
+/* ── SERVICE LINK: WIDER ARROW GAP ── */
+
+.service-link {
+    transition: gap 0.3s ease, color 0.3s ease;
+}
+
+.service-link:hover {
+    gap: 10px;
+}
+
+/* ── HERO CARD ICON: GLOW ── */
+
+.hero-card-icon {
+    transition: transform 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
+}
+
+.hero-card:hover .hero-card-icon {
+    transform: scale(1.12);
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 28px rgba(255, 255, 255, 0.22);
+}
+
+/* ── GALLERY: COLORED HOVER BUTTONS ── */
+
+.gallery-btn:hover {
+    background: var(--white);
+    color: var(--primary);
+    transform: translateY(-50%) scale(1.12);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.22);
+}
+
+/* ── ABOUT IMAGE: PERSPECTIVE TILT ── */
+
+.about-preview-image {
+    transition: transform 0.5s ease;
+}
+
+.about-preview-image:hover {
+    transform: perspective(1200px) rotateY(2deg) rotateX(-1deg);
 }

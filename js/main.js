@@ -218,27 +218,77 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // --- Intersection Observer for Scroll Animations ---
+    // --- Intersection Observer for Scroll Animations (with stagger) ---
     var animateElements = document.querySelectorAll(
         '.service-card, .why-us-card, .testimonial-card, .value-card, .patient-type, .clinic-feature, .contact-card, .service-detail-block'
     );
 
     if (animateElements.length > 0 && 'IntersectionObserver' in window) {
+        // Group elements by parent to compute per-group stagger index
+        var parentGroups = new Map();
+        animateElements.forEach(function (el) {
+            var parent = el.parentElement;
+            if (!parentGroups.has(parent)) parentGroups.set(parent, []);
+            parentGroups.get(parent).push(el);
+        });
+
+        parentGroups.forEach(function (group) {
+            group.forEach(function (el, idx) {
+                el._staggerDelay = idx * 90; // 90ms per sibling
+                el.classList.add('animate-ready');
+            });
+        });
+
         var observer = new IntersectionObserver(
             function (entries) {
                 entries.forEach(function (entry) {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('animate-in');
-                        observer.unobserve(entry.target);
+                        var el = entry.target;
+                        var delay = el._staggerDelay || 0;
+                        setTimeout(function () {
+                            el.classList.add('animate-in');
+                        }, delay);
+                        observer.unobserve(el);
                     }
                 });
             },
-            { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+            { threshold: 0.08, rootMargin: '0px 0px -32px 0px' }
         );
 
         animateElements.forEach(function (el) {
-            el.classList.add('animate-ready');
             observer.observe(el);
         });
+    }
+
+    // --- Counter Animation for Experience Badge ---
+    var expNumber = document.querySelector('.exp-number');
+    if (expNumber && 'IntersectionObserver' in window) {
+        var targetText = expNumber.textContent.trim();
+        var target = parseInt(targetText, 10);
+        var suffix = targetText.replace(/[0-9]/g, '');
+
+        var counterObserver = new IntersectionObserver(function (entries) {
+            if (entries[0].isIntersecting) {
+                var duration = 1400;
+                var startTime = null;
+
+                function animateCount(timestamp) {
+                    if (!startTime) startTime = timestamp;
+                    var progress = Math.min((timestamp - startTime) / duration, 1);
+                    var eased = 1 - Math.pow(1 - progress, 3);
+                    expNumber.textContent = Math.floor(eased * target) + suffix;
+                    if (progress < 1) {
+                        requestAnimationFrame(animateCount);
+                    } else {
+                        expNumber.textContent = targetText;
+                    }
+                }
+
+                requestAnimationFrame(animateCount);
+                counterObserver.unobserve(expNumber);
+            }
+        }, { threshold: 0.6 });
+
+        counterObserver.observe(expNumber);
     }
 });
